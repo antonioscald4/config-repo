@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+  namespace: myapp
+  labels:
+    app: demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      # Decommenta solo se NON configuri le credenziali di pull a livello di nodo
+      # (il secret harbor-pull va creato a mano nel namespace myapp del downstream)
+      imagePullSecrets:
+      - name: harbor-pull
+      containers:
+      - name: demo-app
+        image: harbor.cut3g.egeos.internal/example-project/demo-app:0
+        ports:
+        - containerPort: 8080
