@@ -21,6 +21,6 @@ spec:
       - name: harbor-pull
       containers:
       - name: demo-app
-        image: harbor.cut3g.egeos.internal/example-project/demo-app:3
+        image: harbor.cut3g.egeos.internal/example-project/demo-app:4
         ports:
         - containerPort: 8080
